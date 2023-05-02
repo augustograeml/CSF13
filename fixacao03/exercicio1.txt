@@ -1,9 +1,0 @@
-Exercício 1 -> a = 10 ;  b = 20 e c =10
-a)b>=a
-  sim
-b)b < 5
-  não
-c)b+c != a
-  sim
-d)a + c == b*2 -  2*a
-  sim
