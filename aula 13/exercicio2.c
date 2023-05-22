@@ -1,3 +1,7 @@
+/*-------------------------------   
+EXERCICIO 2 -- Aula 13 -- 11/05/2023
+IMPRIME NA ORDEM INVERSA DA QUE FOI FORNECIDA
+-------------------------------*/
 #include <stdio.h>
 #include <stdlib.h>
 
