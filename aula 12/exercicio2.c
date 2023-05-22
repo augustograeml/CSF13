@@ -1,3 +1,8 @@
+/*-------------------------------   
+EXERCICIO 2 -- Aula 12 -- 09/05/2023
+EH PALINDROMO COM UMA FUNÇAO REMOVE EXTREMOS
+-------------------------------*/
+
 #include <stdio.h>
 int main()
 {
