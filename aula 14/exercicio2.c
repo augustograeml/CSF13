@@ -1,3 +1,7 @@
+/*-------------------------------   
+EXERCICIO 22 -- Aula 14 -- 16/05/2023
+RETIRA UM NÚMERO DO VETOR E DESLOCA TODOS PARA A ESQUERDA
+--------------------------------*/
 #include <stdio.h>
 #include <stdlib.h>
 #define N 5
