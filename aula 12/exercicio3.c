@@ -1,3 +1,9 @@
+/*-------------------------------   
+EXERCICIO 3 -- Aula 12 -- 09/05/2023
+SEQUENCIA K ALTERNANTE 
+(A sequência 1 3 6 8 9 11 2 4 1 7 6 8 é 2-alternante. A sequência 2 1 4 7 8 9 12 é 1-alternante.
+ A sequência 4 2 3 1 6 4 2 9 3 não é alternante. A sequência 1 3 5 é 3-alternante.)
+-------------------------------*/
 #include <stdio.h>
 
 int eh_k_alternante(int n, int *k_alternante);
