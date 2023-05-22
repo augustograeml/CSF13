@@ -1,3 +1,8 @@
+/*-------------------------------   
+EXERCICIO 3 -- Aula 14 -- 16/05/2023
+STRING DO CEBOLINHA (TROCA R POR L)
+---------------------------*/
+
 #include <stdio.h>
 #include <string.h>
 #define MAX 50
