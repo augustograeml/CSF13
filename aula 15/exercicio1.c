@@ -25,7 +25,7 @@ int n_pedras, n_sapos, i,j = 0,k, possiveis_posicoes[N_MAX], posicao_inicial, di
         scanf("%d", &posicao_inicial );
         scanf("%d", &distancia_pulo);
 
-        while(posicao < n_pedras)
+        while(posicao_inicial + distancia_pulo * j < n_pedras)
             {
                 posicao = posicao_inicial + distancia_pulo * j;
                 possiveis_posicoes[posicao] = 1;
@@ -35,7 +35,7 @@ int n_pedras, n_sapos, i,j = 0,k, possiveis_posicoes[N_MAX], posicao_inicial, di
             j = 0;
             posicao = posicao_inicial;
 
-        while(posicao >= 0)
+        while(posicao_inicial - distancia_pulo * j >= 0)
             {
             posicao = posicao_inicial - distancia_pulo * j;
             possiveis_posicoes[posicao] = 1;
