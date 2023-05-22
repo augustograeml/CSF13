@@ -1,3 +1,7 @@
+/*-------------------------------   
+EXERCICIO 2 -- Aula 10 -- 20/04/2023
+RETORNA A PARTE NÃO INTEIRA DO NÚMERO
+-------------------------------*/
 #include <stdio.h>
 
 double casasDecimais (double  x);
