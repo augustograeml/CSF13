@@ -1,6 +1,6 @@
 /*-------------------------------   
 EXERCICIO 1 -- Aula 13 -- 11/05/2023
-IMPRIME NA ORDEM INVERSA DA ORDEM FORNECIDA
+CALCULA A MÉDIA E IMPRIME APENAS OS VALORES POSITIVOS
 -------------------------------*/
 
 #include <stdio.h>
