@@ -1,3 +1,7 @@
+/*-------------------------------   
+EXERCICIO 1 -- Aula 12 -- 09/05/2023
+SEGUNDOS PARA HMS
+-------------------------------*/
 #include <stdio.h>
 #define N 10000
 
