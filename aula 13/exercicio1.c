@@ -1,3 +1,8 @@
+/*-------------------------------   
+EXERCICIO 1 -- Aula 13 -- 11/05/2023
+IMPRIME NA ORDEM INVERSA DA ORDEM FORNECIDA
+-------------------------------*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #define N 10
@@ -6,7 +11,7 @@
 
 int main()
 {
-int i, eh_positivo = 0,soma, qtde_maior = 0, qtde_menor = 0;
+int i, eh_positivo = 0, soma, qtde_maior = 0, qtde_menor = 0;
 float valores[eh_positivo], val, media = 0;
 
     for(i = 0; i < N ; i++)
