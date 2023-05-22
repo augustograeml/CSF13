@@ -1,3 +1,7 @@
+/*-------------------------------   
+EXERCICIO 1 -- Aula 13 -- 11/05/2023
+VALORES ALEATÓRIOS - MÉDIA
+-------------------------------*/
 #include <stdio.h>
 #include <stdlib.h>
 
