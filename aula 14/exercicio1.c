@@ -1,3 +1,7 @@
+/*-------------------------------   
+EXERCICIO 1 -- Aula 14 -- 16/05/2023
+CORREÇAO DE GABARITO
+---------------------------*/
 #include <stdio.h>
 #define N 81
 
