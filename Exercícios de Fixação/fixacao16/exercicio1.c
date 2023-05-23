@@ -1,3 +1,7 @@
+/*-----------------------------------
+EXERCÍCIO 1 - Aula 16 - 23/05/2023
+ALOCAÇÃO DINÂMICA (aloca,gera um vetor com valores lidos do teclado, e mostra na tela)
+------------------------------------*/
 #include <stdio.h>
 #include <stdlib.h>
 #define N 10
