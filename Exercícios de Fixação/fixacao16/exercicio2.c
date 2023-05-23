@@ -1,7 +1,7 @@
 /*----------------------------------
 Exercício 2 - Aula 16 - 23/05/2023
 Vetor recebe o valor dos dois outros multiplicados
-NÃO FUNCIONA!!!!
+NÃO FUNCIONA!!!! -> fazer até o menor tamanho possível
 ----------------------------------*/
 
 #include <stdio.h>
