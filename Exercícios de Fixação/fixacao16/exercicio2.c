@@ -1,3 +1,9 @@
+/*----------------------------------
+Exercício 2 - Aula 16 - 23/05/2023
+Vetor recebe o valor dos dois outros multiplicados
+NÃO FUNCIONA!!!!
+----------------------------------*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #define N 10
