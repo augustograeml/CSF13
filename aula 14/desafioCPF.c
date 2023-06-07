@@ -9,7 +9,7 @@ int ehValido(int *cpf);
 int main()
 {
 
-    int valido, cpf[N] = {1,3,0,2,8,0,1,6,9,4,0};
+    int valido, cpf[N] = {1,0,0,2,8,0,1,6,9,4,0};
 
     valido = ehValido(cpf);
 
