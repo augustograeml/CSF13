@@ -85,7 +85,7 @@ void atrasaSinal (double* dados, int n_amostras, int atraso)
 //função 5: aplica um filtro abafando o som
 void filtroDaMedia (double* dados, int n_amostras, int largura)
 {
-    double* valorOriginal = malloc(n_amostras * sizeof(double)); // vetor para armazenar os valores originais do vetor dados de entrada para poder calcular as médias
+    double* valorOriginal = (double*)malloc(n_amostras * sizeof(double)); // vetor para armazenar os valores originais do vetor dados de entrada para poder calcular as médias
     int i, j; //variáveis de controle de iteração e manipulação de vetores
     double media, soma; //variáveis para realizar as operações necessárias para o filtro
 
@@ -114,21 +114,18 @@ void filtroDaMedia (double* dados, int n_amostras, int largura)
 void ecos (double* dados, int n_amostras, int n_repeticoes, int atraso, int abafamento, double decaimento)
 {
     int i, j; //variáveis de controle de iteração
-    double* dadosCopia = malloc(n_amostras * sizeof(double)); //vetor que mantém a cópia dos valores do vetor de entrada incial
-    double* saida = malloc(n_amostras * sizeof(double)); //vetor de saída da função
+    double* dadosCopia = (double*)malloc(n_amostras * sizeof(double)); //vetor que mantém a cópia dos valores do vetor de entrada incial
+    double* saida = (double*)malloc(n_amostras * sizeof(double)); //vetor de saída da função
 
     for(i = 0; i<n_amostras; i++) //loop para a cópia dos valores originais
         dadosCopia[i] = dados[i];
 
     for(i = 0; i < n_repeticoes; i++) //loop para realizar o eco o tanto de vezes especificado pelo chamador da função
     {
-        if(i>0) //condicional para tratar se o i não é a primeira posição
-        {
             filtroDaMedia (dadosCopia, n_amostras, abafamento); //aplica o filtro da média no vetor com os dados copiados para o abafamento definido
             mudaGanho (dadosCopia, n_amostras, decaimento); //diminui o som pelo decaimento especificado pelo chamador da função
-        }
-        atrasaSinal (dadosCopia, n_amostras, atraso); // atrasa o sinal de acordo com o atraso especificado
-        misturaDados (dadosCopia, dados, saida, n_amostras); // mistura o vetor que foi modificado com o original causando o efeito de eco e armazena no vetor saída
+            atrasaSinal (dadosCopia, n_amostras, atraso); // atrasa o sinal de acordo com o atraso especificado
+            misturaDados (dadosCopia, dados, saida, n_amostras); // mistura o vetor que foi modificado com o original causando o efeito de eco e armazena no vetor saída
 
         for(j = 0; j<n_amostras; j++) //loop para percorrer o vetor inteiro
             dados[j] = saida[j]; //vetor original recebe os valores do vetor de saída
