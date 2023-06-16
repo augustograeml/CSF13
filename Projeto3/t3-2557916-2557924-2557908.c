@@ -17,13 +17,14 @@ int tem_cor = 0, tamanho = 0;
     removeFundo(img, bg);
 
     for(i = 0; i < img->altura; i++)
+    {
         for(j = 0; j < img->largura; j++)
             for(k = 0 ; k < 3; k++);
             {
                 if(img->dados[k][i][j] != 0)
                     tem_cor++;
             }
-        }
+    }
     while(tem_cor)
     {
         for(k = 0 ; k < 3; k++)
@@ -35,7 +36,7 @@ int tem_cor = 0, tamanho = 0;
                         tamanho++;
                         img->dados[k][i][j] = 0;
                     }
-                    classificacao = verificaTamanho(tamanho); //implementar int verificaTamanho (if's para verificar tamanho se é moto, etc.) retorna 0,1,2,3(posicoes do vetor contagem)
+                    int classificacao = verificaTamanho(tamanho); //implementar int verificaTamanho (if's para verificar tamanho se é moto, etc.) retorna 0,1,2,3(posicoes do vetor contagem)
 
                     if(classificacao == 0)
                        contagem[0]++;
