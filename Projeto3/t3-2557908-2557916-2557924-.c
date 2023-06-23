@@ -1,3 +1,6 @@
+/*--------------------------
+LOGICA MELHOR DE REMOVER FUNDO
+--------------------------*/
 #include <stdio.h>
 #include "gerador_de_testes.h"
 #include "imagem.h"
