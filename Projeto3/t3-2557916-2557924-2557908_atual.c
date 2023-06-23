@@ -3,7 +3,7 @@ AUGUSTO CESAR GRAEML | 2557916
 CAIQUE FERRAZ        | 2557924
 ANTONIO NETO         | 2557908
 
-PROJETO 3 - Implementação da função contaVeiculos
+PROJETO 3 - ImplementaÃ§Ã£o da funÃ§Ã£o contaVeiculos
 -------------------------------------------------*/
 #include <stdio.h>
 #include "gerador_de_testes.h"
@@ -13,11 +13,11 @@ PROJETO 3 - Implementação da função contaVeiculos
 #define PARAMETRO_SUAVIZACAO 50
 #define TAMANHO 3
 
-//variáveis i, j, k para percorrer as matrizes, tolerancia matém um intervalo como uma margem de erro
+//variÃ¡veis i, j, k para percorrer as matrizes, tolerancia matÃ©m um intervalo como uma margem de erro
 unsigned int i, j, k, tolerancia = 50;
 //unsigned char tolerancia = '0';
-char arquivo[BUFFER]; //caminho para oa arquivo que será gerado pela função removeFundo
-void removeFundo(Imagem3C* img, Imagem3C* bg); //função para remover o fundo da img
+char arquivo[BUFFER]; //caminho para oa arquivo que serÃ¡ gerado pela funÃ§Ã£o removeFundo
+void removeFundo(Imagem3C* img, Imagem3C* bg); //funÃ§Ã£o para remover o fundo da img
 int verificaControle(Imagem1C* controle);
 
 int contaVeiculos (Imagem3C* img, Imagem3C* bg, int contagem [N_TIPOS_DE_VEICULOS])
@@ -81,7 +81,7 @@ int tem_cor = 0, tamanho = 0, linha = 0, coluna = 0;
                         tamanho++;
                         img->dados[k][i][j] = 0;
                     }
-                    int classificacao = verificaTamanho(tamanho); //implementar int verificaTamanho (if's para verificar tamanho se é moto, etc.) retorna 0,1,2,3(posicoes do vetor contagem)
+                    int classificacao = verificaTamanho(tamanho); //implementar int verificaTamanho (if's para verificar tamanho se Ã© moto, etc.) retorna 0,1,2,3(posicoes do vetor contagem)
 
                     if(classificacao == 0)
                        contagem[0]++;
@@ -174,8 +174,11 @@ Imagem1C **alocaMatriz (int linha, int coluna)
 
 }
 
-Imagem1C **destroiMatriz (unsigned char** dados, int largura)
+void **destroiMatriz (unsigned char** dados, int largura)
 {
     int i;
-    for(i = 0; i < largura)
+    for(i = 0; i < largura; i++)
+        free(dados[i]);
+
+    free dados;
 }
