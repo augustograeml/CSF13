@@ -1,0 +1,11 @@
+Imagem1C **alocaMatriz (int linha, int coluna)
+{
+    Imagem1C **matriz;
+    int i;
+    matriz = (Imagem1C **) malloc(linha * sizeof (Imagem1C*));
+    for(i = 0; i < coluna; i++)
+        matriz[i] = (Imagem1C *) malloc( colunas * sizeof (Imagem1C));
+
+    return matriz;
+
+}
