@@ -1,8 +1,0 @@
-void **destroiMatriz (unsigned char** dados, int largura)
-{
-    int i;
-    for(i = 0; i < largura; i++)
-        free(dados[i]);
-
-    free dados;
-}
