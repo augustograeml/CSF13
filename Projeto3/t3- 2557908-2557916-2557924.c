@@ -150,8 +150,7 @@ void removeFundo(Imagem3C* img, Imagem3C* bg)
                 img->dados[1][i][j] = 0;
                 img->dados[2][i][j] = 0;
 
-               img->dados[k][i][j] = 0;
-
+        
                 bg->dados[0][i][j] = 0;
                 bg->dados[1][i][j] = 0;
                 bg->dados[2][i][j] = 0;
