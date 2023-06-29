@@ -3,16 +3,16 @@ AUGUSTO CESAR GRAEML | 2557916
 CAIQUE FERRAZ        | 2557924
 ANTONIO NETO         | 2557908
 
-PROJETO 3 - ImplementaÁ„o da funÁ„o contaVeiculos
+PROJETO 3 - Implementa√ß√£o da fun√ß√£o contaVeiculos
 -------------------------------------------------*/
 
 #include "gerador_de_testes.h"
 #include "imagem.h"
 #include "trabalho3.h"
 
-//vari·veis i, j, k para percorrer as matrizes
+//vari√°veis i, j, k para percorrer as matrizes
 int i, j, k;
-Imagem3C* removeFundo(Imagem3C* img, Imagem3C* bg); //funÁ„o para remover o fundo da img
+Imagem3C* removeFundo(Imagem3C* img, Imagem3C* bg); //fun√ß√£o para remover o fundo da img
 int identificaVeiculos (Imagem3C* teste, Imagem3C* bg, int* contagem);
 void suavizaImagem (Imagem3C* img);
 
