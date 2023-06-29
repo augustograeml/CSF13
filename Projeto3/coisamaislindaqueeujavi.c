@@ -3,13 +3,14 @@ ANTONIO NETO         | 2557908
 AUGUSTO CESAR GRAEML | 2557916
 CAIQUE FERRAZ        | 2557924
 
-PROJETO 3 - ImplementaÁ„o da funÁ„o contaVeiculos
+PROJETO 3 - Implementa√ß√£o da fun√ß√£o contaVeiculos
 -------------------------------------------------*/
 #include <stdio.h>
 #include <stdlib.h>
 #include "gerador_de_testes.h"
 #include "imagem.h"
 #include "trabalho3.h"
+/*-----------------------------------------------*/
 #define RESUMO 8 //em quantas vezes a matriz resumida sera diminuida
 #define GRAMA 100
 #define MIN_MOTO 12
@@ -24,15 +25,14 @@ PROJETO 3 - ImplementaÁ„o da funÁ„o contaVeiculos
 #define MAX_ROTULO_DIR 7
 
 /*------------------------------------------------------------------------------------*/
-
-void removeFundo(Imagem3C* img, Imagem3C* bg); //funÁ„o para remover o fundo da img
-void filtroDeImagem (Imagem3C* img, int tamanho_vizinhos); //funÁ„o que filtra os ruÌdos da imagem sem fundo
+//FUNCOES AUXILIARES
+void removeFundo(Imagem3C* img, Imagem3C* bg); //fun√ß√£o para remover o fundo da img
+void filtroDeImagem (Imagem3C* img, int tamanho_vizinhos); //fun√ß√£o que filtra os ru√≠dos da imagem sem fundo
 int num_vizinhos(Imagem3C* img,int k, int i, int j);
-void rotulaCarros (int** matrizResumida, int altura, int largura, int** matriz); //funÁ„o para rotular os veÌculos
-void zeraIndividuais (int i, int j, int** matriz_resumida); //funÁ„o para zerar 1's em grupos de atÈ 3
-int** alocaMatriz (int altura, int largura); //funÁ„o para alocar matriz dinamicamente
-void destroiMatriz(int** matriz, int altura); //funÁ„o para desalocar matriz
-
+void rotulaCarros (int** matrizResumida, int altura, int largura, int** matriz); //fun√ß√£o para rotular os ve√≠culos
+void zeraIndividuais (int i, int j, int** matriz_resumida); //fun√ß√£o para zerar 1's em grupos de at√© 3
+int** alocaMatriz (int altura, int largura); //fun√ß√£o para alocar matriz dinamicamente
+void destroiMatriz(int** matriz, int altura); //fun√ß√£o para desalocar matriz
 /*------------------------------------------------------------------------------------*/
 
 int contaVeiculos (Imagem3C* img, Imagem3C* bg, int contagem [N_TIPOS_DE_VEICULOS])
@@ -59,7 +59,7 @@ int vizinhos = 2;
 
     matriz_binaria = alocaMatriz(altura, largura);
 
-    //matriz_binaria È comparada com a matriz original e recebe 1 onde h· carros e 0 onde h· fundo
+    //matriz_binaria √© comparada com a matriz original e recebe 1 onde h√° carros e 0 onde h√° fundo
     for(i = 0; i<altura; i++)
         for(j = 0; j<largura; j++)
             if(img->dados[0][i][j] != 0)
@@ -73,7 +73,7 @@ int vizinhos = 2;
     rotulaCarros(matrizResumida, altura, largura, matriz_binaria);
 
 
-    //loop que busca os rÛtulos dentro da matriz resumida e soma suas ·reas
+    //loop que busca os r√≥tulos dentro da matriz resumida e soma suas √°reas
     for(k = 2; k<50; k++)
     {
         for(i = 0; i < alturaSimpl; i++)
@@ -83,8 +83,8 @@ int vizinhos = 2;
                 {
                     n_linhas++;
 
-                    /*procura e soma o n˙mero de algarismos a partir do
-                    rÛtulo atÈ chegar em 0, assim chegando em sua ·rea total*/
+                    /*procura e soma o n√∫mero de algarismos a partir do
+                    r√≥tulo at√© chegar em 0, assim chegando em sua √°rea total*/
                     while(matrizResumida[i][j+incrementador] != 0)
                     {
                         area++;
@@ -119,7 +119,9 @@ int vizinhos = 2;
 
     return total_veiculos;
 }
-
+/*se o valor no pixel na imagem estiver entre a tolerancia definida podemos dizer que ali nao tem um veiculo entao
+  podemos definir aquele pixel como preto retirando assim o fundo e caso exista a possibilidade de um veiculo definimos
+  aquele pixel como 255 em todos os canais de cores tendo assim uma imagem em preto e branco */
 void removeFundo(Imagem3C* img, Imagem3C* bg)
 {
     int i, j, k;
@@ -199,7 +201,7 @@ void destroiMatriz(int** matriz, int altura)
     free(matriz);
 }
 
-//Procura pontos pretos na imagem e verifica se os vizinhos s„o brancos
+//Retira os ruidos da  imagem completando possiveis buracos nos veiculos e tirando pequenos ruidos fora dos carros
 void filtroDeImagem (Imagem3C* img, int tamanho_vizinhos)
 {
 int i, j, rotulo = 1, k =0;
@@ -210,6 +212,7 @@ int i, j, rotulo = 1, k =0;
         {
           if(i + tamanho_vizinhos < img->altura && j+tamanho_vizinhos < img->largura && i-tamanho_vizinhos > 0 && j - tamanho_vizinhos > 0)
           {
+            //Se a maioria dos vizinhos forem brancos e o ponto central preto, preenche completamente de branco
             if(img->dados[k][i][j] == 0 && num_vizinhos(img, k, i, j) == 1)
             {
                 img->dados[k][i][j] = 255;
@@ -222,6 +225,7 @@ int i, j, rotulo = 1, k =0;
                 img->dados[k][i][j+1] = 255;
                 img->dados[k][i][j-1] = 255;
             }
+            //se os vizinhos forem em maioria pretos e o ponto central branco, preenche completamente de preto
             else if(img->dados[k][i][j] == 255 && num_vizinhos(img, k, i, j) == 2)
             {
                 img->dados[k][i][j] = 0;
@@ -238,43 +242,28 @@ int i, j, rotulo = 1, k =0;
         }
     }
 }
+//Verifica os vizinhos e retorna 1 se forem maioria brancos ou 2 se forem maioria pretos
 int num_vizinhos(Imagem3C* img,int k, int i, int j)
 {
-    int cont = 0;
+    int soma;
 
-    if(img->dados[k][i+1][j] == 255)
-        cont++;
-    if(img->dados[k][i-1][j] == 255)
-        cont++;
-    if(img->dados[k][i][j+1] == 255)
-        cont++;
-    if(img->dados[k][i][j-1] == 255)
-        cont++;
-    if(img->dados[k][i+1][j+1] == 255)
-        cont++;
-    if(img->dados[k][i+1][j-1] == 255)
-        cont++;
-    if(img->dados[k][i-1][j+1] == 255)
-        cont++;
-    if(img->dados[k][i-1][j-1] == 255)
-        cont++;
+    soma = img->dados[k][i+1][j] + img->dados[k][i-1][j] + img->dados[k][i][j+1] + img->dados[k][i][j-1] + img->dados[k][i+1][j+1] + img->dados[k][i+1][j-1] + img->dados[k][i-1][j+1] + img->dados[k][i-1][j-1];
 
+    int cont = soma/255;
+    
     if(cont > 4)
-        return 1;
-    //se tiver dois vizinhos brancos
+        return 1;   
     else if (cont == 2)
-        return 2;
-    //se tiver apenas um vizinho branco
+        return 2;  
     else if (cont == 1)
         return 2;
-    //se n„o tiver nenhum vizinho branco
     else if (cont == 0)
-        return 2;
+        return 2; 
     else
         return 0;
 }
-/*FunÁ„o para rotular a matriz simplificada, contendo 0 onde n„o h· carros e 1 onde
-h· carros, a funÁ„o sÛ ira rotular o primeiro algarismo de cada linha do veÌculo,
+/*Fun√ß√£o para rotular a matriz simplificada, contendo 0 onde n√£o h√° carros e 1 onde
+h√° carros, a fun√ß√£o s√≥ ira rotular o primeiro algarismo de cada linha do ve√≠culo,
 ex: 000021111100000000000
     000211111000000311100
     000002111100000031100*/
@@ -286,7 +275,7 @@ void rotulaCarros (int** matrizResumida, int altura, int largura, int** matriz)
     int alturaResumida = altura/RESUMO;
     int larguraResumida = largura/RESUMO;
 
-    //Percorre e copia a matriz original de uma forma reduzida, deixando mais f·cil de tratar
+    //Percorre e copia a matriz original de uma forma reduzida, deixando mais f√°cil de tratar
     for(i = 0; i<alturaResumida; i++)
         for(j = 0;j<larguraResumida; j++)
         {
@@ -299,26 +288,26 @@ void rotulaCarros (int** matrizResumida, int altura, int largura, int** matriz)
             eh_continua = 1;
             if(matrizResumida[i][j] == 1)
             {
-                zeraIndividuais(i, j, matrizResumida); //Zera os 010's, 0110's e 01110's presentes na matriz que podem conflitar na lÛgica de rotulaÁ„o
+                zeraIndividuais(i, j, matrizResumida); //Zera os 010's, 0110's e 01110's presentes na matriz que podem conflitar na l√≥gica de rotula√ß√£o
 
-                for(int h = 0; h<TAMANHO_MINIMO; h++) //Verifica se a linha de 1's contÈm o tamanho minimo para ser rotulada
+                for(int h = 0; h<TAMANHO_MINIMO; h++) //Verifica se a linha de 1's cont√©m o tamanho minimo para ser rotulada
                     if(j+h < larguraResumida && matrizResumida[i][j+h] == 0)
                     {
                         eh_continua = 0;
                         break;
                     }
 
-                /*Se a linha conter o tamanho mÌnimo para ser rotulada, verifica se na posiÁ„o acima existe um 0, 1,
-                ou outro rÛtulo, procurando possÌveis rÛtulos j· atribuidos ao veÌculo atual*/
+                /*Se a linha conter o tamanho m√≠nimo para ser rotulada, verifica se na posi√ß√£o acima existe um 0, 1,
+                ou outro r√≥tulo, procurando poss√≠veis r√≥tulos j√° atribuidos ao ve√≠culo atual*/
                 if(achou_primeiro_um == 0 && eh_continua == 1)
                 {
                     achou_primeiro_um = 1;
 
                     if(matrizResumida[i-1][j] == 0)
                     {
-                    /*Se a posiÁ„o acima for 0, a posiÁ„o atual pode ser o inÌcio de um
-                    novo veÌculo ou uma linha maior que a ˙ltima em um veÌculo j· rotulado,
-                    assim procura-se o rotulo ‡ direita na linha acima*/
+                    /*Se a posi√ß√£o acima for 0, a posi√ß√£o atual pode ser o in√≠cio de um
+                    novo ve√≠culo ou uma linha maior que a √∫ltima em um ve√≠culo j√° rotulado,
+                    assim procura-se o rotulo √† direita na linha acima*/
                         for(k = 0; k<MAX_ROTULO_DIR; k++)
                             if (j+k<=larguraResumida)
                                 if(matrizResumida[i-1][j+k] != 0 && matrizResumida[i-1][j+k] != 1)
@@ -327,7 +316,7 @@ void rotulaCarros (int** matrizResumida, int altura, int largura, int** matriz)
                                     achou_acima = 1;
                                     break;
                                 }
-                    /*Se n„o achou um rÛtulo acima, atribui um novo rÛtulo ao novo veÌculo*/
+                    /*Se n√£o achou um r√≥tulo acima, atribui um novo r√≥tulo ao novo ve√≠culo*/
                         if(achou_acima == 0)
                         {
                             matrizResumida[i][j] = rotulo;
@@ -337,8 +326,8 @@ void rotulaCarros (int** matrizResumida, int altura, int largura, int** matriz)
                     }
                     else if(matrizResumida[i-1][j] == 1)
                     {
-                    /*Se a posiÁ„o acima for 1, a posiÁ„o atual sÛ pode ser uma linha de um
-                    carro j· rotulado, assim procura-se o rÛtulo ‡ esquerda na linha acima*/
+                    /*Se a posi√ß√£o acima for 1, a posi√ß√£o atual s√≥ pode ser uma linha de um
+                    carro j√° rotulado, assim procura-se o r√≥tulo √† esquerda na linha acima*/
                         for(k = 0; k<MAX_ROTULO_ESQ; k++)
                             if (j-k>=0)
                                 if(matrizResumida[i-1][j-k] != 0 && matrizResumida[i-1][j-k] != 1)
@@ -347,7 +336,7 @@ void rotulaCarros (int** matrizResumida, int altura, int largura, int** matriz)
                                     break;
                                 }
                     }
-                    /*Se a posiÁ„o acima n„o for 1 nem 0, sÛ resta ser o rÛtulo j· atribuido*/
+                    /*Se a posi√ß√£o acima n√£o for 1 nem 0, s√≥ resta ser o r√≥tulo j√° atribuido*/
                     else
                         matrizResumida[i][j] = matrizResumida[i-1][j];
                 }
@@ -357,7 +346,7 @@ void rotulaCarros (int** matrizResumida, int altura, int largura, int** matriz)
         }
 }
 
-//FunÁ„o para zerar 1's em grupos de atÈ 3, ex: 010, 0110, 0110
+//Fun√ß√£o para zerar 1's em grupos de at√© 3, ex: 010, 0110, 0110
 void zeraIndividuais (int i, int j, int** matriz_resumida)
 {
 
