@@ -28,7 +28,7 @@ PROJETO 3 - Implementação da função contaVeiculos
 //FUNCOES AUXILIARES
 void removeFundo(Imagem3C* img, Imagem3C* bg); //função para remover o fundo da img
 void filtroDeImagem (Imagem3C* img, int tamanho_vizinhos); //função que filtra os ruídos da imagem sem fundo
-int num_vizinhos(Imagem3C* img,int k, int i, int j);
+int num_vizinhos(Imagem3C* img,int k, int i, int j); // verifica se os vizinhos sao maioria brancos ou pretos
 void rotulaCarros (int** matrizResumida, int altura, int largura, int** matriz); //função para rotular os veículos
 void zeraIndividuais (int i, int j, int** matriz_resumida); //função para zerar 1's em grupos de até 3
 int** alocaMatriz (int altura, int largura); //função para alocar matriz dinamicamente
