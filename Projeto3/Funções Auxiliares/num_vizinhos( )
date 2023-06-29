@@ -1,0 +1,24 @@
+//Verifica os vizinhos e retorna 1 se forem maioria brancos ou 2 se forem maioria pretos
+int num_vizinhos(Imagem3C* img,int k, int i, int j)
+{
+    int soma;
+
+    soma = img->dados[k][i+1][j] + img->dados[k][i-1][j] + img->dados[k][i][j+1] + img->dados[k][i][j-1] + img->dados[k][i+1][j+1] + img->dados[k][i+1][j-1] + img->dados[k][i-1][j+1] + img->dados[k][i-1][j-1];
+
+    int cont = soma/255;
+    
+    if(cont > 4)
+        return 1;
+        
+    else if (cont == 2)
+        return 2;
+        
+    else if (cont == 1)
+        return 2;
+   
+    else if (cont == 0)
+        return 2;
+        
+    else
+        return 0;
+}
